@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.UUID;
 
 
-public abstract class CargoImpl implements Cargo{
+public class CargoImpl implements Cargo{
 
     UUID id;
     BigDecimal value;

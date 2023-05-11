@@ -20,6 +20,11 @@ public class CLI {
     }
 
     public void run(){
+        boolean eggsit = false;
+        while (!eggsit){
+
+        }
+
         // implement this
         //  Create
         //  List
@@ -31,7 +36,7 @@ public class CLI {
         if (this.scan.hasNext()){
             return this.scan.nextLine();
         }
-        return "";
+        return null;
     }
 
     private int getInt(){

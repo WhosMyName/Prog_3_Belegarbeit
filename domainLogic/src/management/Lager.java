@@ -1,16 +1,46 @@
 package management;
 
-import cargo.Cargo;
-import cargo.CargoImpl;
+import administration.CustomerImpl;
+import administration.StorableImpl;
+import cargo.*;
+import eventhandling.EventHandler;
+import eventhandling.RequestCustomerEvent;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.UUID;
 
 public class Lager {
     ArrayList<CargoImpl> cargoList;
+    EventHandler handler;
 
     public Lager(){
         this.cargoList = new ArrayList<>();
+    }
+
+
+    public void createCargo(CargoType cargoType, BigDecimal value, Collection<Hazard> hazardList, CustomerImpl customer, boolean fragile, boolean isPressurized, int grainSize){
+        System.out.println("creating Cargo");
+        StorableImpl stowage = new StorableImpl(customer, getNextStorageLocation());
+        if (CargoType.Cargo == cargoType){
+            this.cargoList.add(new CargoImpl(value, hazardList, stowage));
+        } else if (CargoType.UnitisedCargo == cargoType) {
+
+        } else if (CargoType.DryBulkCargo == cargoType) {
+
+        } else if (CargoType.LiquidBulkCargo == cargoType) {
+
+        } else if (CargoType.LiquidDryBulkCargo == cargoType) {
+
+        } else if (CargoType.LiquidBulkUnitisedCargo == cargoType) {
+
+        } else if (CargoType.DryBulkUnitisedCargo == cargoType) {
+            this.cargoList.add(new DryBulkAndUnitisedCargoImpl(value, hazardList, stowage, fragile, grainSize));
+        } else {
+            // throw error + event msg
+        }
+        System.out.println("cargo created");
     }
 
     public void addCargo(CargoImpl c){
@@ -33,9 +63,18 @@ public class Lager {
 
     public boolean removeCargoByID(UUID cid){
         CargoImpl c = findCargoByID(cid);
-        if (c != null)
-            return this.cargoList.remove(c);
-        return false;
+        if (c == null)
+            return false;
+        return this.cargoList.remove(c);
+    }
+
+    private int getNextStorageLocation(){
+        return 0;
+    }
+
+    public void notifyCustomerMgmt(UUID customerID){
+        System.out.println("notifying CMgmt");
+        this.handler.handle(new RequestCustomerEvent(this, customerID));
     }
 
 }

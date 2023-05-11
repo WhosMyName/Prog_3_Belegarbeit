@@ -21,10 +21,33 @@ public class EventHandler {
         this.listeners.remove(listener);
     }
 
-    public void handle(){
+    public void handle(CreateCargoEvent event){
+        System.out.println("received CCE");
         for (EventListener listener : this.listeners){
-            listener.onEvent();
+            listener.onEvent(event);
         }
     }
+
+    public void handle(EditCargoEvent event){
+        System.out.println("received ECE");
+        for (EventListener listener : this.listeners){
+            listener.onEvent(event);
+        }
+    }
+
+    public void handle(RequestCustomerEvent event){
+        System.out.println("received RCE");
+        for (EventListener listener : this.listeners){
+            listener.onEvent(event);
+        }
+    }
+
+    public void handle(ReturnCustomerEvent event){
+        System.out.println("received RCE_2");
+        for (EventListener listener : this.listeners){
+            listener.onEvent(event);
+        }
+    }
+
 }
 
