@@ -63,7 +63,7 @@ public class LagerListener implements EventListener {
     @Override
     public void onEvent(BasicEvent event) {
         System.out.println("onEvent BE");
-        if (event.getClass() == CreateCargoEvent.class)
+        if (event.getClass() == ReturnCustomerEvent.class)
             onReturnCustomerEvent((ReturnCustomerEvent) event);
 
         if (event.getClass() == CreateCargoEvent.class)

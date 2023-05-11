@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public class EditCargoEvent extends CreateCargoEvent{
 
-    protected UUID cargoID;
+    private UUID cargoID;
 
     public EditCargoEvent(Object source, CargoType cargoType, BigDecimal value, Collection<Hazard> hazardList, UUID customerID, UUID cargoID, boolean fragile, boolean isPressurized, int grainSize) {
         super(source, cargoType, value, hazardList, customerID, fragile, isPressurized, grainSize);

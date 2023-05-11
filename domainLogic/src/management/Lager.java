@@ -12,16 +12,18 @@ import java.util.Collection;
 import java.util.UUID;
 
 public class Lager {
-    ArrayList<CargoImpl> cargoList;
-    EventHandler handler;
+    private ArrayList<CargoImpl> cargoList;
+    private EventHandler handler;
 
-    public Lager(){
+    public Lager(EventHandler handler){
         this.cargoList = new ArrayList<>();
+        this.handler = handler;
     }
 
 
     public void createCargo(CargoType cargoType, BigDecimal value, Collection<Hazard> hazardList, CustomerImpl customer, boolean fragile, boolean isPressurized, int grainSize){
         System.out.println("creating Cargo");
+        System.out.println("CT: " + cargoType);
         StorableImpl stowage = new StorableImpl(customer, getNextStorageLocation());
         if (CargoType.Cargo == cargoType){
             this.cargoList.add(new CargoImpl(value, hazardList, stowage));

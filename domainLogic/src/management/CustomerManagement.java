@@ -1,6 +1,7 @@
 package management;
 
 import administration.CustomerImpl;
+import eventhandling.EventHandler;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -8,13 +9,15 @@ import java.util.UUID;
 
 public class CustomerManagement {
     private ArrayList<CustomerImpl> customerList;
+    private EventHandler handler;
 
     public CustomerManagement(ArrayList<CustomerImpl> customers){
         this.customerList = customers;
     }
 
-    public CustomerManagement(){
+    public CustomerManagement(EventHandler handler){
         this.customerList = new ArrayList<CustomerImpl>();
+        this.handler = handler;
     }
 
     public CustomerImpl findCustomerByID(UUID id){

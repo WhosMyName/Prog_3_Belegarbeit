@@ -7,12 +7,12 @@ import management.LagerListener;
 public class Main {
 
     public static void main(String[] args) {
-        CLI cli = new CLI();
-        Lager lager = new Lager();
-        CustomerManagement management = new CustomerManagement();
         EventHandler handler = new EventHandler();
+        Lager lager = new Lager(handler);
+        CustomerManagement management = new CustomerManagement(handler);
         LagerListener lagerListener = new LagerListener(lager);
         handler.addListener(lagerListener);
+        CLI cli = new CLI(handler);
         cli.run();
     }
 }

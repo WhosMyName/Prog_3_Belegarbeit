@@ -4,19 +4,20 @@ import cargo.CargoType;
 import cargo.Hazard;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EventObject;
 import java.util.UUID;
 
 public class CreateCargoEvent extends EventObject implements BasicEvent {
 
-    protected CargoType cargoType;
-    protected BigDecimal value;
-    protected Collection<Hazard> hazardList;
-    protected UUID customerID;
-    protected boolean fragile;
-    protected boolean isPressurized;
-    protected int grainSize;
+    private CargoType cargoType;
+    private BigDecimal value;
+    private Collection<Hazard> hazardList;
+    private UUID customerID;
+    private boolean fragile;
+    private boolean isPressurized;
+    private int grainSize;
 
     public CreateCargoEvent(Object source, CargoType cargoType, BigDecimal value, Collection<Hazard> hazardList, UUID customerID, boolean fragile, boolean isPressurized, int grainSize) {
         super(source);

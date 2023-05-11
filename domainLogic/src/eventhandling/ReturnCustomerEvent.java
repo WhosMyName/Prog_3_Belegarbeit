@@ -5,7 +5,7 @@ import administration.CustomerImpl;
 import java.util.EventObject;
 
 public class ReturnCustomerEvent extends EventObject implements BasicEvent {
-    CustomerImpl customer;
+    private CustomerImpl customer;
 
     public ReturnCustomerEvent(Object source, CustomerImpl customer) {
         super(source);
