@@ -19,13 +19,6 @@ public class StorableImpl implements  Storable{
         this.storageLocation = storageLocation;
     }
 
-    public StorableImpl() {
-        this.owner = new CustomerImpl();
-        this.storageLocation = -1;
-        this.arrivalDate = LocalDate.now();
-        this.lastInspectionDate = LocalDate.now();
-    }
-
     @Override
     public Customer getOwner() {
         return this.owner;

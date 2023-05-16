@@ -21,6 +21,7 @@ public class EventHandler {
         this.listeners.remove(listener);
     }
 
+    /*
     public void handle(CreateCargoEvent event){
         System.out.println("received CCE");
         for (EventListener listener : this.listeners){
@@ -48,6 +49,13 @@ public class EventHandler {
             listener.onEvent(event);
         }
     }
+    */
 
+    public void handle(BasicEvent event){
+        System.out.println("received BE");
+        for (EventListener listener : this.listeners){
+            listener.onEvent(event);
+        }
+    }
 }
 

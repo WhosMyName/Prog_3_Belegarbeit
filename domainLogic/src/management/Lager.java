@@ -1,5 +1,6 @@
 package management;
 
+import administration.CargoImpl;
 import administration.CustomerImpl;
 import administration.StorableImpl;
 import cargo.*;
@@ -13,18 +14,26 @@ import java.util.UUID;
 
 public class Lager {
     private ArrayList<CargoImpl> cargoList;
+    private int capacity;
     private EventHandler handler;
 
-    public Lager(EventHandler handler){
+    public Lager(EventHandler handler, int capacity){
         this.cargoList = new ArrayList<>();
         this.handler = handler;
+        this.capacity = capacity;
     }
 
 
     public void createCargo(CargoType cargoType, BigDecimal value, Collection<Hazard> hazardList, CustomerImpl customer, boolean fragile, boolean isPressurized, int grainSize){
         System.out.println("creating Cargo");
         System.out.println("CT: " + cargoType);
+        if (this.cargoList.size() >= this.capacity){
+            // TODO: add notification to CLI
+            return;
+        }
+        // TODO: check that user exists
         StorableImpl stowage = new StorableImpl(customer, getNextStorageLocation());
+        // +++++
         if (CargoType.Cargo == cargoType){
             this.cargoList.add(new CargoImpl(value, hazardList, stowage));
         } else if (CargoType.UnitisedCargo == cargoType) {
@@ -40,20 +49,16 @@ public class Lager {
         } else if (CargoType.DryBulkUnitisedCargo == cargoType) {
             this.cargoList.add(new DryBulkAndUnitisedCargoImpl(value, hazardList, stowage, fragile, grainSize));
         } else {
-            // throw error + event msg
+            // TODO: throw error + event msg
         }
         System.out.println("cargo created");
     }
 
-    public void addCargo(CargoImpl c){
-        this.cargoList.add(c);
-    }
-
     public void editCargo(){}
 
-    public CargoImpl findCargoByID(UUID cid){
+    public CargoImpl findCargoByStorageLocation(int requestedLocation){
         for (CargoImpl c : this.cargoList){
-            if (cid == c.getId())
+            if (requestedLocation == c.getS)
                 return c;
         }
         return null;
@@ -80,16 +85,3 @@ public class Lager {
     }
 
 }
-
-/*
-* To implement:
-*
-* Decorators:
-* https://www.baeldung.com/java-decorator-pattern
-* https://www.geeksforgeeks.org/decorator-design-pattern-in-java-with-example/
-*
-* Composition:
-* https://www.javatpoint.com/composition-in-java
-* https://www.geeksforgeeks.org/composition-in-java/
-*
-*/

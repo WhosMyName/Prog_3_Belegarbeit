@@ -29,6 +29,8 @@ public class CLI {
     public void run(){
         boolean eggsit = false;
         while (!eggsit){
+            // TODO: fix input
+            // TODO: fix modes
             System.out.println("Please enter the mode of operation:\n" +
                     ":c - Create Cargo\n" +
                     ":r - List Cargo\n" +

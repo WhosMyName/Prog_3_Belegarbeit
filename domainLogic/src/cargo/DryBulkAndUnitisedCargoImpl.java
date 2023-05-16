@@ -1,5 +1,6 @@
 package cargo;
 
+import administration.CargoImpl;
 import administration.Customer;
 import administration.StorableImpl;
 
